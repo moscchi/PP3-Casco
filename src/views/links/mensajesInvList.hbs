@@ -1,0 +1,40 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each mensajeInvitado}}
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase">
+                            {{title}}
+                        </h3>
+                        <hr>
+                        <p class="m-2">{{nombre}} {{apellido}}</p>
+                        <hr>
+                        <p class="m-2">{{email}}</p>
+                        <hr>
+                        <p class="m-2">{{tipo}}</p>
+                        <hr>
+                        <p>{{comentario}}</p>
+                        <hr>
+                        <p>{{timeago created_at}}</p>
+                        <hr>
+                        <a href="/links/responderInvitado/{{idmensaje_invitado}}" class="btn btn-outline-success">Responder</button>
+                        <a href="/links/deleteInvitado/{{idmensaje_invitado}}" class="btn btn-outline-danger">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+                <div class="col-md-4 mx-auto">
+                    <div class="card card-body text-center">
+                        <p>No hay links de invitados creados aún</p>
+                    </div>
+                </div>
+        {{/each}}
+        <div class="regresar">
+    <a href="mainPage"><i class="fas fa-long-arrow-alt-left"></i>
+    Regresar al inicio
+    </a>
+
+  </div>
+    </div>
+</div>

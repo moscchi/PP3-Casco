@@ -1,0 +1,30 @@
+{
+  "name": "PP3-Casco",
+  "version": "1.0.0",
+  "description": "Web de Natural Cosmeticos. La misma tendra un portal inicial, una seccion de ayuda con un bot de preguntas y respuestas y un formulario para enviar preguntas.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.3",
+    "express-mysql-session": "^2.1.6",
+    "express-session": "^1.17.2",
+    "express-validator": "^6.12.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "timeago.js": "^4.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}

@@ -1,0 +1,47 @@
+<div class="container p-4 ">
+  <div class="row justify-content-around">
+    <div class="col md-8">
+      <div class="card">
+        <div class="card-body">
+          <form action="/links/addDeUsuario" method="POST">
+            <div class="form-group text-center col-md-12">
+              <input
+                type="text"
+                class="form-control"
+                name="title"
+                placeholder="Titulo del mensaje"
+                autofocus
+              />
+            </div>
+            <div class="d-flex row justify-content-around">
+              <label> Bienvenido ... usuario</label>
+            </div>
+            <div class="row justify-content-around d-flex">
+              <div class="col-md-3 mt-4">
+                <input type="email" name="email" class="form-control" placeholder="Email">
+                <select name="tipo" class="form-select mt-4">
+                  <option value="null">Selecciona consulta...</option>
+                  <option value="cambio_producto">Cambio producto</option>
+                  <option value="compra_tienda">Compra en Tienda</option>
+                  <option value="compra_online">Compra online</option>
+                  <option value="compra_producto">Comprar productos</option>
+                  <option value="evento_adverso">Evento Adverso</option>
+                  <option value="reclamo_reventa">Reclamo reventa</option>
+                  <option value="vender_producto">Vender Productos</option>
+                  <option value="venta_online">Venta online</option>
+                </select>
+
+              </div>
+              
+              <div class="col-md-7 mt-4">
+                <textarea name="comentario" class="form-control" placeholder="Escribe tu comentario..." rows="5" cols="50"></textarea>
+              </div>
+
+            </div>
+              <input type="submit" class="btn btn-warning mt-5 col-md-12" value="Enviar mensaje">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
