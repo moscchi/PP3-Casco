@@ -11,3 +11,6 @@ passport-local ( es un complemento de passport para autenticar con nuestra propi
 timeago.js (modulo para manejar las fechas, para usar al estilo de hace 2 minutos etc) -> libreria para parsear a español: https://github.com/ofaaoficial/timeago.js-es_ES
 connect-flash ( lo usamos para mostrar mensajes de error yexito cuando el usuario realize una operacion)
 express-validator (es un modulo para vlaidar los datos q nos envia el usuario)
+
+nodemailer () -> No uso Gmail porque deberia obtener un OAuth2 authentication. Para ello deberia registrar una aplicación de Google y una serie de pasos más, ya que no permite que bots (o apps random) envien mensajes ya que los bloquean y no llegan a destino.
+En su lugar, voy a estar utilizando ... 
