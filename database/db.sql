@@ -5,7 +5,7 @@ USE database_natural;
 CREATE TABLE users(
     id INT(11) NOT NULL AUTO_INCREMENT,
     username VARCHAR(16) NOT NULL,
-    password VARCHAR(60) NOT NULL,
+    contraseña VARCHAR(60) NOT NULL,
     nombre VARCHAR(18) NOT NULL,
     apellido VARCHAR(18) NOT NULL,
     email VARCHAR(30) NOT NULL
@@ -40,4 +40,11 @@ CREATE TABLE `database_natural`.`mensaje_invitado` (
 
   ALTER TABLE `database_natural`.`mensaje_invitado` 
 ADD COLUMN `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `comentario`;
+
+ALTER TABLE `database_natural`.`mensaje_invitado` 
+ADD COLUMN `status` TINYINT NOT NULL AFTER `title`;
+
+ALTER TABLE `database_natural`.`mensaje_usuario` 
+ADD COLUMN `status` TINYINT NOT NULL AFTER `created_at`;
+
 

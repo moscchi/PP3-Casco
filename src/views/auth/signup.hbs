@@ -1,0 +1,126 @@
+<script>
+function verificarPasswords() {
+ 
+    // Ontenemos los valores de los campos de contraseñas 
+    pass1 = document.getElementById('pass1');
+    pass2 = document.getElementById('pass2');
+    f = document.getElementById('formulario');
+    // Verificamos si las constraseñas no coinciden 
+    if (pass1.value != pass2.value) {
+        // Si las constraseñas no coinciden mostramos un mensaje 
+        document.getElementById("error").classList.add("mostrar");
+         return false;
+    } else {
+ 
+        // Si las contraseñas coinciden ocultamos el mensaje de error
+        document.getElementById("error").classList.remove("mostrar");
+ 
+        // Mostramos un mensaje mencionando que las Contraseñas coinciden 
+        document.getElementById("ok").classList.remove("ocultar");
+ 
+        // Desabilitamos el botón de login 
+        document.getElementById("login").disabled = true;
+ 
+        // Refrescamos la página (Simulación de envío del formulario) 
+        setTimeout(function() {
+            f.submit();
+        }, 2000);
+ 
+        return true;
+    }
+ 
+}
+</script>
+<style>
+    .ocultar {
+    display: none;
+}
+ 
+.mostrar {
+    display: block;
+}
+</style>
+<div class="container p-4">
+  <div class="row">
+    <div id="msg"></div>
+
+    <!-- Mensajes de Verificación -->
+    <div id="error" class="alert alert-danger ocultar" role="alert">
+      Las Contraseñas no coinciden, intente nuevamente.
+    </div>
+    <div id="ok" class="alert alert-success ocultar" role="alert">
+      Enviando formulario...
+    </div>
+    <!-- Fin Mensajes de Verificación -->
+    <div class="col-md-4 mx-auto">
+      <div class="card text-center">
+        <div class="card-header">
+          <h3>Registrarse</h3>
+        </div>
+        <div class="card-body">
+          <form action="/signup" method="POST" id="formulario" onsubmit="verificarPasswords(); return false">
+            <div class="form-group mb-2">
+              <input 
+                type="text"
+                name="nombre"
+                placeholder="Nombre"
+                class="form-control mb-2"
+                minlength="3"
+                maxlength="16"
+                autofocus required
+              />
+              <input
+                type="text"
+                name="apellido"
+                placeholder="Apellido"
+                minlength="3"
+                maxlength="16"
+                class="form-control mb-2" required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                maxlength="29"
+                class="form-control mb-2" required
+              />
+            </div>
+            <div class="form-group mb-2">
+              <input
+                type="text"
+                name="username"
+                placeholder="Nombre de usuario"
+                minlength="3"
+                maxlength="15"
+                class="form-control mb-2" required
+              />
+              <input
+                type="password"
+                name="contraseña"
+                placeholder="Contraseña"
+                id="pass1"
+                minlength="6"
+                maxlength="12"
+                class="form-control mb-2" required
+              />
+              <input
+                type="password"
+                name="contraseña2"
+                placeholder="Contraseña"
+                id="pass2"
+                minlength="6"
+                maxlength="12"
+                class="form-control mb-2" required
+              />
+            </div>
+            <div class="form-group">
+              <button class="btn btn-success btn-block" id="login" >
+                Registrarme
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

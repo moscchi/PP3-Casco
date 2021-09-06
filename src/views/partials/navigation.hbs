@@ -1,14 +1,14 @@
     <div class="menusito">
       <div class="container">
         <div class="nav-main">
-          <a href="#">
+          <a href="/links/mainPage">
             <img
               src="/img/natura-cosmeticos.jpeg"
               alt="natura-cosmeticos"
-              class="nav-brand"
+              class="nav-brand pt-3"
             />
           </a>
-          <ul class="nav-menu">
+          <ul class="nav-menu pt-3">
             <li>
               <a href="#">CUIDADOS DIARIOS</a>
             </li>
@@ -28,21 +28,38 @@
               <a href="#">INFANTIL</a>
             </li>
             <ul>
+              {{#if user}}
+              <li class="nav-item dropdown">
+        <a class="" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <p style="text-transform:uppercase">{{user.username}} <i class="fas fa-chevron-circle-down"></i></p>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a href="profile">
+                  Perfil
+                </a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a href="/logout">
+                  Cerrar Sesión
+                </a>
+        </div>
+      </li>
+              
+              {{else}}
             <li>
-              <a href="#">
+              <a href="/signin">
                 <i class="far fa-user"></i>
                 LOG IN
               </a>
             </li>
-            <li>
-              <a href="#">
+              <li><a href="/signup">
                 REGISTRO
               </a>
             </li>
-            
+            {{/if}}
           </ul>
           </ul>
-          <ul>
+          <ul class="pt-3">
             <li>
               <a href="#">
                 <i class="fas fa-search"></i>

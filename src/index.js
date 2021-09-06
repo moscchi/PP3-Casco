@@ -2,10 +2,16 @@ const express = require('express');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path')
+const flash = require('connect-flash');
+const session = require('express-session');
+const MySQLSTORE = require('express-mysql-session');
+const passport = require('passport');
+const { database } = require('./keys')
 //Dividimos en secciones para tener mas orden
 
 //Inicializaciones -> creo mi aplicacion en si
 const app = express();
+require('./lib/passport');
 
 //settings -> pongo las configuraciones que necesita mi servidor (ejemplo puertos, etc)
 //En esta linea le asignare un puerto a la app. Le digo que si existe un puerto en configuraciones (enviroments), lo utilize. Si no, que utilize el puerto 4000 
@@ -24,19 +30,30 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 
 //Middlewares -> Son las funciones que se utilizan cuando un usuario hace peticiones http
+app.use(session({
+    secret: 'naturapreguntassession',
+    resave: false,
+    saveUninitialized: false,
+    store: new MySQLSTORE(database)
+}))
+//Inicializamos el middleware de flash
+app.use(flash());
 //Aca vamos a decirle a nuestra app que utilize mrogan. Le pasamos el parámetro dev para que veamos que peticiones le llega al servidor .
 app.use(morgan('dev'));
 //Aca declaramos la extencion deencoded para validar datos de los formularios que use la applicacion
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: false}));
 //Aclaramos que queremos enviar y recibir json's
-app.use(express.json())
-
+app.use(express.json());
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Variables globales -> Acá van las variables que se usan en toda la app
 app.use((req, res, next) => {
+    app.locals.success = req.flash('success');
+    app.locals.message = req.flash('message');
+    app.locals.user = req.user;
     next();
 })
-
 
 //Rutas -> aca definimos las url's del servidor
 //Aca le decimos a la app que use del archivo index, el objeto router que configuramos allí previamente.

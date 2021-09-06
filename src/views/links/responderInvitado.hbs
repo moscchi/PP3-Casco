@@ -3,7 +3,7 @@
     <div class="col md-8">
       <div class="card">
         <div class="card-body">
-          <form action="/links/responderInvitado" method="POST">
+          <form action="/links/responderInvitado/{{msjInvitado.idmensaje_invitado}}" method="POST">
             <div class="form-group text-center col-md-12">
              {{msjInvitado.title}}
             </div>
@@ -29,7 +29,7 @@
               </div>
 
             </div>
-              <input type="submit" class="btn btn-warning mt-5 col-md-12" value="Enviar mensaje">
+              <input href="mensajesInvList" type="submit" class="btn btn-warning mt-5 col-md-12" value="Enviar mensaje">
           </form>
         </div>
       </div>

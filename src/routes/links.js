@@ -1,7 +1,8 @@
+const transporter = require('../mailer');
 const express = require('express');
 const pool = require('../database');
-
 const router = express.Router();
+const { isLoggedIn } = require('../lib/auth');
 
 //Consumimos la conexion a la bd.
 const db = require('../database');
@@ -21,31 +22,34 @@ router.get('/addDeInvitado', (req, res) => {
 })
 
 router.post('/addDeInvitado', async (req, res) => {
-    const { title, nombre, apellido, email, tipo, comentario } = req.body;
+    const { title, nombre, apellido, email, tipo, comentario, status } = req.body;
     const mensajeNuevo = {
         title,
         nombre,
         apellido,
         email,
         tipo,
-        comentario
+        comentario,
+        status: 0
     };
-    await pool.query('INSERT INTO mensaje_invitado set ?', [mensajeNuevo])
+    await pool.query('INSERT INTO mensaje_invitado set ?', [mensajeNuevo]);
+    req.flash('success', 'Mensaje enviado correctamente.'); //No hace falta importar flash porque al ya ser declarado en app.use (siendo un middleware), req ya puede utilizarlo
     res.redirect('/links/mainPage');
 })
 //Tenemos la ruta del formulario para usuario registrado.
-router.get('/addDeUsuario', (req, res) => {
+router.get('/addDeUsuario', isLoggedIn, (req, res) => {
     res.render('links/addDeUsuario')
 })
 //falta agregar usuario al constante
-router.post('/addDeUsuario', async (req, res) => {
+router.post('/addDeUsuario', isLoggedIn, async (req, res) => {
     const { title, tipo, email, comentario, user_id } = req.body;
     const mensajeUsuario = {
         title,
         tipo,
         email,
         comentario,
-        user_id
+        user_id,
+        status: 0
     };
     //await pool.query('INSERT INTO mensaje_usuario set ?', [mensajeUsuario])
     console.log(mensajeUsuario)
@@ -67,6 +71,7 @@ router.get('/invitadoMensaje', async (req, res) => {
 router.get('/deleteInvitado/:idmensaje_invitado', async (req, res) =>{
     const { idmensaje_invitado } = req.params;
     await pool.query('DELETE FROM mensaje_invitado WHERE idmensaje_invitado = ?', [idmensaje_invitado]);
+    req.flash('success', 'Mensaje eliminado satisfactoriamente.')
     res.redirect('/links/invitadoMensaje');
 });
 
@@ -75,6 +80,14 @@ router.get('/responderInvitado/:idmensaje_invitado', async (req, res) => {
     const msjInvitado = await pool.query('SELECT * FROM mensaje_invitado WHERE idmensaje_invitado = ?', [idmensaje_invitado]);
     console.log(msjInvitado)
     res.render('links/responderInvitado', {msjInvitado: msjInvitado[0]});
-
 })
+
+router.post('/responderInvitado/:idmensaje_invitado', async (req, res) => {
+    const { idmensaje_invitado } = req.params;
+    const redirect = '/links/invitadoMensaje'
+    await pool.query(`UPDATE mensaje_invitado set status = '1' where idmensaje_invitado = ?`, [idmensaje_invitado]);
+    req.flash('success', 'Mensaje respondido con éxito.')
+    res.redirect('/links/invitadoMensaje');
+})
+
 module.exports = router;

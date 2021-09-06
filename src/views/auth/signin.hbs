@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <div class="card text-center">
+        <div class="card-header">
+          <h3>Iniciar Sesión</h3>
+        </div>
+        <div class="card-body">
+            <img src="/img/natura-cosmeticos.jpeg" alt="" srcset="">
+          <form
+            action="/signin"
+            method="POST"
+            id="formulario"
+          >
+            <div class="form-group mb-2">
+              <input
+                type="text"
+                name="username"
+                placeholder="Usuario"
+                class="form-control mb-2"
+                required
+              />
+              <input
+                type="password"
+                name="contraseña"
+                placeholder="Contraseña"
+                id="pass1"
+                class="form-control mb-2"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <button class="btn btn-success btn-block" id="login">
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="regresar">
+    <a href="links/mainPage"><i class="fas fa-long-arrow-alt-left"></i>
+    Regresar al inicio
+    </a>
+    </div>
+    
+
+  </div>
+  </div>
+</div>
