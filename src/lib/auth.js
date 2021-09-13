@@ -4,7 +4,13 @@ module.exports = {
         if(req.isAuthenticated()){
             return next();
         }
-        return res.redirect('/signin')
-    }
+        return res.redirect('/signin');
+    },
 
+    isLoggedAdmin(req, res, next){
+        if(req.isAuthenticated() && req.user.rol === 'admin'){
+            return next();
+        }
+        return res.redirect('/signin');
+    }
 }

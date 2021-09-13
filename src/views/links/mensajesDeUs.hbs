@@ -1,0 +1,32 @@
+<div class="container p-4">
+  <div class="row">
+    {{#each mensajesDeUs}}
+      <div class="col-md-3">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3 class="card-title text-uppercase">
+              {{title}} | ID
+            </h3>
+            
+            <p class="m-2">{{username}}: {{nombre}} {{apellido}}</p>
+            <p class="m-2">{{email}}</p>
+            <p class="m-2">{{tipo}}</p>
+            <p>{{comentario}}</p>
+          </div>
+        </div>
+      </div>
+    {{else}}
+      <div class="col-md-4 mx-auto">
+        <div class="card card-body text-center">
+          <p>El usuario no tiene mensajes hasta el momento.</p>
+        </div>
+      </div>
+    {{/each}}
+    <div class="regresar">
+      <a href="mainPage"><i class="fas fa-long-arrow-alt-left"></i>
+        Regresar al inicio
+      </a>
+
+    </div>
+  </div>
+</div>

@@ -2,8 +2,7 @@ const transporter = require('../mailer');
 const express = require('express');
 const pool = require('../database');
 const router = express.Router();
-const { isLoggedIn } = require('../lib/auth');
-
+const { isLoggedIn, isLoggedAdmin } = require('../lib/auth');
 //Consumimos la conexion a la bd.
 const db = require('../database');
 
@@ -42,30 +41,38 @@ router.get('/addDeUsuario', isLoggedIn, (req, res) => {
 })
 //falta agregar usuario al constante
 router.post('/addDeUsuario', isLoggedIn, async (req, res) => {
-    const { title, tipo, email, comentario, user_id } = req.body;
+    const [{id: user_id}] = await pool.query('SELECT id FROM users WHERE username = ?', [req.user.username]);
+    const { title, tipo, comentario } = req.body;
     const mensajeUsuario = {
         title,
         tipo,
-        email,
         comentario,
         user_id,
         status: 0
     };
-    //await pool.query('INSERT INTO mensaje_usuario set ?', [mensajeUsuario])
+    await pool.query('INSERT INTO mensaje_usuario set ?', [mensajeUsuario])
     console.log(mensajeUsuario)
-    res.send('received');
+    res.redirect('profile');
 })
 
-//Pagina para que usuario vea sus mensajes --VER ACA PAGINA USUARIO MENSAJES-- ver parte 1:20 del video
-router.get('/usuarioMensaje', async (req, res) => {
+router.get('/usuarioMensajes', isLoggedAdmin, async (req, res) => {
+    const mensajesUsuario = await pool.query('SELECT * FROM mensaje_usuario, users WHERE mensaje_usuario.user_id = users.id');
+    res.render('links/mensajesUsList', {mensajesUsuario});
+})
+/* router.get('/usuarioMensaje', async (req, res) => {
     const mensajesUsuario = await pool.query('SELECT * FROM mensaje_usuario')
     console.log(mensajesUsuario)
     res.render('links/mensajesUsList', {mensajesUsuario});
-})
-// Falta agregar logica para que pueda entrar solo el administrador aca... y que pueda responder y eliminar mensajes
-router.get('/invitadoMensaje', async (req, res) => {
+}) */
+//Pagina para que el admin vea mensajes de invitados
+router.get('/invitadoMensaje', isLoggedAdmin, async (req, res) => {
     const mensajeInvitado = await pool.query('SELECT * FROM mensaje_invitado')
     res.render('links/mensajesInvList', {mensajeInvitado});
+})
+//Pagina para que el usuario vea sus mensajes
+router.get('/mensajesDeUs', isLoggedIn, async (req, res) => {
+    const mensajesDeUs = await pool.query('SELECT * FROM mensaje_usuario WHERE user_id = ?', [req.user.id])
+    res.render('links/mensajesDeUs', {mensajesDeUs});
 })
 
 router.get('/deleteInvitado/:idmensaje_invitado', async (req, res) =>{
@@ -88,6 +95,10 @@ router.post('/responderInvitado/:idmensaje_invitado', async (req, res) => {
     await pool.query(`UPDATE mensaje_invitado set status = '1' where idmensaje_invitado = ?`, [idmensaje_invitado]);
     req.flash('success', 'Mensaje respondido con éxito.')
     res.redirect('/links/invitadoMensaje');
+})
+
+router.get('/ayudaContacto', (req, res) => {
+    res.render('links/ayudaContacto')
 })
 
 module.exports = router;
