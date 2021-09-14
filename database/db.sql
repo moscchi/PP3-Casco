@@ -1,4 +1,4 @@
-CREATE DATABASE database_natural;
+[10:32, 9/9/2021] SM⚛️: CREATE DATABASE database_natural;
 
 USE database_natural;
 
@@ -55,5 +55,15 @@ ADD COLUMN `status` TINYINT NOT NULL AFTER `created_at`;
 
 
 ALTER TABLE database_natural.users add column rol VARCHAR(10) NOT NULL;
+<<<<<<< HEAD
 
 ALTER TABLE database_natural.mensaje_invitado MODIFY idmensaje_invitado INT(11) NOT NULL AUTO_INCREMENT;
+=======
+
+ALTER TABLE database_natural.mensaje_invitado MODIFY idmensaje_invitado INT(11) NOT NULL AUTO_INCREMENT;
+
+
+
+//Creacion de us admin
+INSERT INTO `database_natural`.`users` (`username`, `contraseña`, `nombre`, `apellido`, `email`, `rol`) VALUES ('admin', 'admin123', 'Administrador', 'Natural', 'admin@natural.com', 'admin');
+>>>>>>> a86acc205767983c5339813501dbcf11b25efe52

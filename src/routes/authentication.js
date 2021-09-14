@@ -29,7 +29,19 @@ router.post('/signin', (req, res, next) => { //Lo hacemos distinto a signup pq p
     }) (req, res, next)
 })
 router.get('/profile', isLoggedIn, (req, res) => {
+    if(req.user.rol === 'admin'){
+        res.render('profileAdmin')
+    } else{
     res.render('profile');
+    }
+})
+
+router.get('/links/profile', isLoggedIn, (req, res) => {
+    if(req.user.rol === 'admin'){
+        res.render('profileAdmin')
+    } else{
+    res.render('profile');
+    }
 })
 
 router.get('/logout', (req, res) => {
