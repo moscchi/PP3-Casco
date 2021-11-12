@@ -1,0 +1,187 @@
+<body>
+    <header>
+        <h4 id="bienvenida">Consultá tus dudas: </h4>
+    </header>
+    <div class="container">
+        <div id="chat">
+            <div id="msj_user">Hola tengo unas consultas...</div>
+            <div id="msj_bot">
+                Hola! Qué gusto verte acá. Soy el bot de Natura, y estoy aquí para responder tus preguntas. Por favor selecciona una consulta aquí debajo y presiona el botón enviar.
+            </div>
+        </div>
+        <div class="ordenes">   
+            
+            <label id="orden">Qué quieres preguntarme?
+                </label>
+                <select id="preguntas">
+                    <option > Tengo una duda sobre...</option>
+                    <option id="1">Cambio producto.</option>
+                    <option id="2">Compra en tienda.</option>
+                    <option id="3">Compra online.</option>
+                    <option id="4">Comprar productos.</option>
+                    <option id="5">Eventos adversos.</option>
+                    <option id="6">Reclamo reventa.</option>
+                    <option id="7">Vender productos.</option>
+                    <option id="8">Venta online.</option>
+                    <option id="9">Envío de tickets como invitado o usuario.</option>
+                </select>
+                <button id="but-send" onclick="sendQuestion()">Enviar</button>
+        </div>
+    </div>
+</body>
+<script>
+  // document.getElementById('but-send').addEventListener('click', sendQuestion, false);
+function sendQuestion() {
+    var question = '';    
+    console.log(question);
+    question = document.getElementById('preguntas').value;
+    
+    if (question === 'Cambio producto.'){
+        document.getElementById('chat').innerHTML=`
+        <div id="chat">
+            <div id="msj_user" >
+                Tengo dudas sobre cómo puedo hacer para cambiar un producto.
+            </div>
+            <div id="msj_bot">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nulla voluptatibus nisi eos veniam quod corrupti delectus nam non labore.
+            </div>`;
+    } else if(question === 'Compra en tienda.'){
+        document.getElementById('chat').innerHTML=`
+        <div id="chat">
+            <div id="msj_user" >
+                Tengo duda de cómo comprar en tienda.
+            </div>
+            <div id="msj_bot">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos iste modi ad aliquid suscipit maiores sit fugiat ipsum sequi saepe suscipit maiores sit fugiat ipsum sequi saepe.
+                 
+            </div>`;
+    }else if(question === 'Compra online.'){
+        document.getElementById('chat').innerHTML=`
+        <div id="chat">
+            <div id="msj_user" >
+                Tengo duda de cómo realizar una compra online.
+            </div>
+            <div id="msj_bot">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </div>`;
+    }else if(question === 'Comprar productos.'){
+        document.getElementById('chat').innerHTML=`
+        <div id="chat">
+            <div id="msj_user" >
+                Tengo duda de cómo comprar productos.
+            </div>
+            <div id="msj_bot">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit suscipit maiores sit fugiat ipsum sequi saepe. Eos iste modi ad aliquid suscipit maiores sit fugiat ipsum sequi saepe.
+            </div>`;
+    }else if(question === 'Eventos adversos.'){
+    document.getElementById('chat').innerHTML=`
+    <div id="chat">
+        <div id="msj_user" >
+            ¿Qué pasa si ocurre un evento adverso?
+        </div>
+        <div id="msj_bot">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit suscipit maiores sit fugiat ipsum sequi saepesuscipit maiores sit fugiat ipsum sequi saepe. Eos iste modi ad aliquid suscipit maiores sit fugiat ipsum sequi saepe.
+        </div>`;
+    }else if(question === 'Reclamo reventa.'){
+        document.getElementById('chat').innerHTML=`
+        <div id="chat">
+            <div id="msj_user" >
+                ¿Cómo formulo un reclamo en una reventa?
+            </div>
+            <div id="msj_bot">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. E fugiat ipsum sequi saepe.
+            </div>`;
+    }else if(question === 'Vender productos.'){
+        document.getElementById('chat').innerHTML=`
+        <div id="chat">
+            <div id="msj_user" >
+                ¿Cómo puedo hacer para vender sus productos?
+            </div>
+            <div id="msj_bot">
+                Lorem ipsum dolor suscipit maiores sit fugiat ipsum sequi saepe sit amet consectetur adipisicing elit. Eos iste modi ad aliquid suscipit maiores sit fugiat ipsum sequi saepe.
+            </div>`;
+    }else if(question === 'Venta online.'){
+        document.getElementById('chat').innerHTML=`
+        <div id="chat">
+            <div id="msj_user" >
+                ¿Cómo puedo vender productos online?
+            </div>
+            <div id="msj_bot">
+                Lorem ipsum dolor sit adipisicing elit. Eos iste modi ad aliquid suscipit maiores sit fugiat ipsum sequi saepe.
+            </div>`;
+    }else if(question === 'Envío de tickets como invitado o usuario.'){
+        document.getElementById('chat').innerHTML=`
+        <div id="chat">
+            <div id="msj_user" >
+                Necesito más información, ¿Podría comunicarme con algun representante ya sea como invitado o un usuario?
+            </div>
+            <div id="msj_bot">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. suscipit maiores sit fugiat ipsum sequi saepesuscipit maiores sit fugiat ipsum sequi saepesuscipit maiores sit fugiat ipsum sequi saepesuscipit maiores sit fugiat ipsum sequi saepe Eos iste modi ad aliquid suscipit maiores sit fugiat ipsum sequi saepe.
+            </div>`;
+    }
+}
+sendQuestion();
+</script>
+
+<style>
+header {
+    width: 70%;
+    margin: auto;
+    background-color: darkgray;
+}
+.container {
+    width: 70%;
+    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+header h4 {
+    font-size: 35px;
+    font-style: oblique;
+    text-align: center;
+}
+#chat {
+    font-size: 16px;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80%;
+    justify-content: flex-end;
+    padding: 2%;       
+    border:rgb(209, 124, 44) 2px solid;
+}
+#msj_user {
+    background-color: cadetblue;
+    color: whitesmoke;
+    font-size: 20px;
+    border-radius: 20%;
+    padding: 5px;
+    display: flex;
+    margin-right: 30%;
+    margin-bottom: 10px;
+    
+}
+#msj_bot {
+    background-color: rgb(209, 124, 44);
+    color: lightblue;
+    font-size: 20px;
+    border-radius: 10%;
+    padding: 5px;
+    margin-left: 30%;
+    
+    margin-bottom: 10px;
+}
+.ordenes {
+    font-size: 20px;
+    margin-top: 10px;
+    background-color: darkslategray;
+    display: flex;
+   
+    align-items: center;
+    justify-content: center;
+}
+label {
+    margin-right: 20px;
+    color: white;
+}
+</style>

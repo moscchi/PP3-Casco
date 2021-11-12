@@ -5,13 +5,17 @@
         <div class="card text-center">
           <div class="card-body">
             <h3 class="card-title text-uppercase">
-              {{title}} | ID
+              {{title}} | #00{{id_mensaje}}
             </h3>
-            
-            <p class="m-2">{{username}}: {{nombre}} {{apellido}}</p>
-            <p class="m-2">{{email}}</p>
-            <p class="m-2">{{tipo}}</p>
+            <h6 class="m-2">{{tipo}}</h6>
             <p>{{comentario}}</p>
+            <hr>
+            <br>
+            {{#if status}}
+            <p>Respondido</p>
+            {{else}}
+            <p>Sin responder aún.</p>
+            {{/if}}
           </div>
         </div>
       </div>

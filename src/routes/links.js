@@ -15,6 +15,10 @@ router.get('/ayudaContacto', (req, res) => {
     res.render('links/ayudaContacto')
 })
 
+router.get('/chatbot', (req, res) => {
+    res.render('links/chatbot')
+})
+
 //Tenemos la ruta del formulario para invitado (no registrado)
 router.get('/addDeInvitado', (req, res) => {
     res.render('links/addDeInvitado')
@@ -51,6 +55,7 @@ router.post('/addDeUsuario', isLoggedIn, async (req, res) => {
         status: 0
     };
     await pool.query('INSERT INTO mensaje_usuario set ?', [mensajeUsuario])
+    console.log(req);
     console.log(mensajeUsuario)
     res.redirect('profile');
 })
@@ -91,10 +96,23 @@ router.get('/responderInvitado/:idmensaje_invitado', async (req, res) => {
 
 router.post('/responderInvitado/:idmensaje_invitado', async (req, res) => {
     const { idmensaje_invitado } = req.params;
-    const redirect = '/links/invitadoMensaje'
     await pool.query(`UPDATE mensaje_invitado set status = '1' where idmensaje_invitado = ?`, [idmensaje_invitado]);
     req.flash('success', 'Mensaje respondido con éxito.')
     res.redirect('/links/invitadoMensaje');
+})
+
+router.get('/responderUsuario/:id_mensaje', async (req, res) => {
+    const { id_mensaje} = req.params;
+    const msjUsuario = await pool.query('SELECT * FROM mensaje_usuario WHERE id_mensaje = ?', [id_mensaje]);
+    console.log(msjUsuario)
+    res.render('links/responderUsuario', {msjUsuario: msjUsuario[0]});
+})
+
+router.post('/responderUsuario/:id_mensaje', async (req, res) => {
+    const { id_mensaje } = req.params;
+    await pool.query(`UPDATE mensaje_usuario set status = '1' where id_mensaje = ?`, [id_mensaje]);
+    req.flash('success', 'Mensaje respondido con éxito.')
+    res.redirect('/links/mensajesDeUs');
 })
 
 router.get('/ayudaContacto', (req, res) => {

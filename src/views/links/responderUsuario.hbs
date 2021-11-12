@@ -1,0 +1,38 @@
+<div class="container p-4 ">
+  <div class="row justify-content-around">
+    <div class="col md-8">
+      <div class="card">
+        <div class="card-body">
+          <form action="/links/responderUsuario/{{msjUsuario.id_mensaje}}" method="POST">
+            <div class="form-group text-center col-md-12">
+             {{msjUsuario.title}}
+            </div>
+            <div class="d-flex row justify-content-around">
+              <div class="col-md-5 mt-4">
+                {{msjUsuario.nombre}}
+              </div>
+              <div class="col-md-5 mt-4">
+              {{msjUsuario.apellido}}
+              </div>
+            </div>
+            <div class="row justify-content-around d-flex">
+              <div class="col-md-3 mt-4">
+                {{msjUsuario.email}}
+                {{msjUsuario.tipo}}
+
+              </div>
+              
+              <div class="col-md-7 mt-4">
+                  <label for="comentario"> Responder al invitado:</label>
+                  {{msjUsuario.comentario}}
+                <textarea name="comentario" class="form-control" placeholder="Escribe tu comentario..." rows="5" cols="50"></textarea>
+              </div>
+
+            </div>
+              <input href="mensajesInvList" type="submit" class="btn btn-warning mt-5 col-md-12" value="Enviar mensaje">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
