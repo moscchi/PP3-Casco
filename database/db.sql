@@ -62,7 +62,3 @@ ALTER TABLE database_natural.mensaje_invitado MODIFY idmensaje_invitado INT(11) 
 ALTER TABLE database_natural.mensaje_invitado MODIFY idmensaje_invitado INT(11) NOT NULL AUTO_INCREMENT;
 
 
-
-
-INSERT INTO `database_natural`.`users` (`username`, `contraseña`, `nombre`, `apellido`, `email`, `rol`) VALUES ('admin', 'admin123', 'Administrador', 'Natural', 'admin@natural.com', 'admin');
-
