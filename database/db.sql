@@ -20,7 +20,7 @@ CREATE TABLE mensaje_usuario (
     id INT(11) NOT NULL,
     title VARCHAR(150) NOT NULL,
     tipo VARCHAR(100) NOT NULL,
-    mensaje VARCHAR(500),
+    comentario VARCHAR(500),
     user_id INT(11) NOT NULL,
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id)
