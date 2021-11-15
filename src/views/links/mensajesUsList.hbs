@@ -5,7 +5,7 @@
                 <div class="card text-center">
                     <div class="card-body-{{status}}">
                         <h3 class="card-title text-uppercase">
-                            {{title}}
+                            {{title}} | #00{{id_mensaje}}
                         </h3>
                         <hr>
                         <p class="m-2">{{nombre}} {{apellido}}</p>
@@ -18,17 +18,18 @@
                         <hr>
                         <p>{{timeago created_at}}</p>
                         <hr>
-                        <a href="/links/responderInvitado/{{idmensaje_invitado}}" class="btn btn-outline-success">Responder</button>
-                        <a href="/links/deleteInvitado/{{idmensaje_invitado}}" class="btn btn-outline-danger">Eliminar</a>
+                        <a href="/links/responderUsuario/{{id_mensaje}}" class="btn btn-outline-success">Responder</button>
+                        <a href="/links/deleteInvitado/{{id_mensaje}}" class="btn btn-outline-danger">Eliminar</a>
                     </div>
                 </div>
             </div>
             {{else}}
                 <div class="col-md-4 mx-auto">
                     <div class="card card-body text-center">
-                        <p>No hay links de invitados creados aún</p>
+                        <p>No hay mensajes de usuarios creados aún</p>
                     </div>
                 </div>
+                
         {{/each}}
         <div class="regresar">
     <a href="mainPage"><i class="fas fa-long-arrow-alt-left"></i>

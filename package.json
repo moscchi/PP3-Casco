@@ -4,7 +4,8 @@
   "description": "Web de Natural Cosmeticos. La misma tendra un portal inicial, una seccion de ayuda con un bot de preguntas y respuestas y un formulario para enviar preguntas.",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
