@@ -8,11 +8,16 @@ const db = require('../database');
 
 //Aca redireccionamos cuando el sv reciba del navegador una ruta add
 router.get('/mainPage', (req, res) => {
-    res.render('links/mainPage')
+    res.render('links/mainPage');
 })
 
+router.get('/chatbot', (req, res) => {
+    res.render('links/chatbot');
+})
+
+
 router.get('/ayudaContacto', (req, res) => {
-    res.render('links/ayudaContacto')
+    res.render('links/ayudaContacto');
 })
 
 router.get('/chatbot', (req, res) => {
