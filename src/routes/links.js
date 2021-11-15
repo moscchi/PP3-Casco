@@ -1,4 +1,3 @@
-const transporter = require('../mailer');
 const express = require('express');
 const pool = require('../database');
 const router = express.Router();
