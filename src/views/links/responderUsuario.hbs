@@ -5,25 +5,19 @@
         <div class="card-body">
           <form action="/links/responderUsuario/{{msjUsuario.id_mensaje}}" method="POST">
             <div class="form-group text-center col-md-12">
-             {{msjUsuario.title}}
+             <h4>Titulo: </h4><h5>{{msjUsuario.title}}</h5>
             </div>
             <div class="d-flex row justify-content-around">
-              <div class="col-md-5 mt-4">
-                {{msjUsuario.nombre}}
-              </div>
-              <div class="col-md-5 mt-4">
-              {{msjUsuario.apellido}}
-              </div>
+
             </div>
             <div class="row justify-content-around d-flex">
               <div class="col-md-3 mt-4">
-                {{msjUsuario.email}}
-                {{msjUsuario.tipo}}
+                <h4>Tipo de consulta: </h4>{{msjUsuario.tipo}}
 
               </div>
               
               <div class="col-md-7 mt-4">
-                  <label for="comentario"> Responder al invitado:</label>
+                  <label for="comentario"> Responder al usuario:</label>
                   {{msjUsuario.comentario}}
                 <textarea name="comentario" class="form-control" placeholder="Escribe tu comentario..." rows="5" cols="50"></textarea>
               </div>
