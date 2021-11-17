@@ -85,6 +85,13 @@ router.get('/deleteInvitado/:idmensaje_invitado', async (req, res) =>{
     res.redirect('/links/invitadoMensaje');
 });
 
+router.get('/deleteUsuario/:id_mensaje', async (req, res) =>{
+    const { id_mensaje } = req.params;
+    await pool.query('DELETE FROM mensaje_usuario WHERE id_mensaje = ?', [id_mensaje]);
+    req.flash('success', 'Mensaje eliminado satisfactoriamente.')
+    res.redirect('/links/usuarioMensajes');
+});
+
 router.get('/responderInvitado/:idmensaje_invitado', async (req, res) => {
     const { idmensaje_invitado } = req.params;
     const msjInvitado = await pool.query('SELECT * FROM mensaje_invitado WHERE idmensaje_invitado = ?', [idmensaje_invitado]);
